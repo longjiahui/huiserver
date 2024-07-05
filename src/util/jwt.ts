@@ -2,7 +2,7 @@ import { sign as jwtSign, decode as jwtDecode } from 'jsonwebtoken'
 
 const jwtCookieSecret = process.env.JWT_COOKIE_SECRET
 
-const getAuthFunction = (secret: string) => ({
+export const getAuthFunction = (secret: string) => ({
     sign: (
         data: string | Buffer | object,
         options?: Parameters<typeof jwtSign>[2]

@@ -1,6 +1,6 @@
 {
     "name": "@anfo/huiserver",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "",
     "main": "./dist/index.js",
     "module": "./dist/index.js",
@@ -13,7 +13,7 @@
         "build": "tsc",
         "lint": "tsc --noEmit",
         "test": "NODE_ENV=test tsc-watch -P tsconfig.test.json --onSuccess \"node --experimental-require-module ./node_modules/mocha/bin/_mocha --recursive ./dist_test/**/*.spec.js\"",
-        "prepublish": "pnpm build"
+        "prepublishOnly": "pnpm build"
     },
     "keywords": [],
     "author": "",
