@@ -11,6 +11,12 @@ import { FatalError } from '../error'
 
 export interface ApplicationGuard {}
 
+// initENV
+initEnv()
+if (!process.env.JWT_COOKIE_SECRET) {
+    throw new FatalError('no JWT_COOKIE_SECRET specified!')
+}
+
 export class Application {
     public httpServer: HttpServer
     public koa: Koa
@@ -42,11 +48,6 @@ export class Application {
             },
         })
         this.logger = options.logger ?? defaultLogger
-
-        initEnv()
-        if (!process.env.JWT_COOKIE_SECRET) {
-            throw new FatalError('no JWT_COOKIE_SECRET specified!')
-        }
     }
 
     async use(mod: Module) {
