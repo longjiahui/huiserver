@@ -1,15 +1,19 @@
 {
-    "name": "huiserver",
+    "name": "@anfo/huiserver",
     "version": "1.0.0",
     "description": "",
     "main": "./dist/index.js",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
+    "files": [
+        "./dist"
+    ],
     "scripts": {
         "dev": "cross-env DEBUG=koa-router,server:* tsc-watch --onSuccess \"node dist/index.js\"",
         "build": "tsc",
         "lint": "tsc --noEmit",
-        "test": "NODE_ENV=test tsc-watch -P tsconfig.test.json --onSuccess \"node --experimental-require-module ./node_modules/mocha/bin/_mocha --recursive ./dist_test/**/*.spec.js\""
+        "test": "NODE_ENV=test tsc-watch -P tsconfig.test.json --onSuccess \"node --experimental-require-module ./node_modules/mocha/bin/_mocha --recursive ./dist_test/**/*.spec.js\"",
+        "prepublish": "pnpm build"
     },
     "keywords": [],
     "author": "",
