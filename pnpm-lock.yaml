@@ -11,9 +11,6 @@ importers:
       '@anfo/validator':
         specifier: ^0.0.1
         version: 0.0.1
-      '@koa/cors':
-        specifier: ^5.0.0
-        version: 5.0.0
       '@prisma/client':
         specifier: 5.13.0
         version: 5.13.0(prisma@5.13.0)
@@ -87,9 +84,6 @@ importers:
       '@types/koa-static':
         specifier: ^4.0.4
         version: 4.0.4
-      '@types/koa__cors':
-        specifier: ^5.0.0
-        version: 5.0.0
       '@types/lodash':
         specifier: ^4.17.1
         version: 4.17.1
@@ -131,10 +125,6 @@ packages:
 
   '@anfo/validator@0.0.1':
     resolution: {integrity: sha512-IhCi5M+FptVoAcAJ7rpOLwpw4muMj6XcszHOwZ6CL9BA9nqf3UUe83Lz5qF6HABBLzfsfTE3LDb3GEFerfE3Qw==}
-
-  '@koa/cors@5.0.0':
-    resolution: {integrity: sha512-x/iUDjcS90W69PryLDIMgFyV21YLTnG9zOpPXS7Bkt2b8AsY3zZsIpOLBkYr9fBcF3HbkKaER5hOBZLfpLgYNw==}
-    engines: {node: '>= 14.0.0'}
 
   '@prisma/client@5.13.0':
     resolution: {integrity: sha512-uYdfpPncbZ/syJyiYBwGZS8Gt1PTNoErNYMuqHDa2r30rNSFtgTA/LXsSk55R7pdRTMi5pHkeP9B14K6nHmwkg==}
@@ -231,9 +221,6 @@ packages:
 
   '@types/koa@2.15.0':
     resolution: {integrity: sha512-7QFsywoE5URbuVnG3loe03QXuGajrnotr3gQkXcEBShORai23MePfFYdhz90FEtBBpkyIYQbVD+evKtloCgX3g==}
-
-  '@types/koa__cors@5.0.0':
-    resolution: {integrity: sha512-LCk/n25Obq5qlernGOK/2LUwa/2YJb2lxHUkkvYFDOpLXlVI6tKcdfCHRBQnOY4LwH6el5WOLs6PD/a8Uzau6g==}
 
   '@types/lodash@4.17.1':
     resolution: {integrity: sha512-X+2qazGS3jxLAIz5JDXDzglAF3KpijdhFxlf/V1+hEsOUc+HnWi81L/uv/EvGuV90WY+7mPGFCUDGfQC3Gj95Q==}
@@ -1087,11 +1074,6 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
-  vary@https://r2.cnpmjs.org/vary/-/vary-1.1.2.tgz:
-    resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==, tarball: https://r2.cnpmjs.org/vary/-/vary-1.1.2.tgz}
-    version: 1.1.2
-    engines: {node: '>= 0.8'}
-
   which@2.0.2:
     resolution: {integrity: sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==}
     engines: {node: '>= 8'}
@@ -1153,10 +1135,6 @@ packages:
 snapshots:
 
   '@anfo/validator@0.0.1': {}
-
-  '@koa/cors@5.0.0':
-    dependencies:
-      vary: https://r2.cnpmjs.org/vary/-/vary-1.1.2.tgz
 
   '@prisma/client@5.13.0(prisma@5.13.0)':
     optionalDependencies:
@@ -1281,10 +1259,6 @@ snapshots:
       '@types/keygrip': 1.0.6
       '@types/koa-compose': 3.2.8
       '@types/node': 20.12.7
-
-  '@types/koa__cors@5.0.0':
-    dependencies:
-      '@types/koa': 2.15.0
 
   '@types/lodash@4.17.1': {}
 
@@ -2145,8 +2119,6 @@ snapshots:
   utils-merge@1.0.1: {}
 
   vary@1.1.2: {}
-
-  vary@https://r2.cnpmjs.org/vary/-/vary-1.1.2.tgz: {}
 
   which@2.0.2:
     dependencies:

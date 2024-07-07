@@ -1,10 +1,12 @@
-import { ValidateError } from '../../../error'
-import type { Context, Module } from '../../../framework/type'
+import { ValidateError } from '../../error'
+import type { Context, Module } from '../../framework/type'
 import type { Next } from 'koa'
 import { Validator, type RuleArg } from '@anfo/validator'
 
 const validator = new Validator()
-function v(rule: { body?: RuleArg; params?: RuleArg; query?: RuleArg } = {}) {
+export function v(
+    rule: { body?: RuleArg; params?: RuleArg; query?: RuleArg } = {}
+) {
     return async (ctx: Context, next: Next) => {
         const failed = (err: string) => {
             throw new ValidateError(`params validate failed: ${err}`)
@@ -28,11 +30,6 @@ function v(rule: { body?: RuleArg; params?: RuleArg; query?: RuleArg } = {}) {
             }
         }
         return await next()
-    }
-}
-declare module '../../../framework/application' {
-    interface ApplicationGuard {
-        v: typeof v
     }
 }
 

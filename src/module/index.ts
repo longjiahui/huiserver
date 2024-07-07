@@ -1,5 +1,5 @@
 import type { Module } from '../framework/type'
-import http from './module/http'
+import http from './http'
 
 export default ((app) => {
     // submodule

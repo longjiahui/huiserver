@@ -1,12 +1,12 @@
-import { AuthError, ServiceError, ValidateError } from '../../../error'
-import type { Module } from '../../../framework/type'
+import { AuthError, ServiceError, ValidateError } from '../../error'
+import type { Module } from '../../framework/type'
 import {
     defaultError,
     notLoginError,
     serviceFailed,
     success,
     validateError,
-} from '../../util/ret'
+} from '../../util'
 
 export default ((app) => {
     app.koa.use(async (ctx, next) => {

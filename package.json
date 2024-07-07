@@ -1,6 +1,6 @@
 {
     "name": "@anfo/huiserver",
-    "version": "1.0.2",
+    "version": "1.0.6",
     "description": "",
     "main": "./dist/index.js",
     "module": "./dist/index.js",
@@ -26,7 +26,6 @@
         "@types/koa": "^2.15.0",
         "@types/koa-passport": "^6.0.3",
         "@types/koa-static": "^4.0.4",
-        "@types/koa__cors": "^5.0.0",
         "@types/lodash": "^4.17.1",
         "@types/mocha": "^10.0.6",
         "@types/passport": "^1.0.16",
@@ -42,7 +41,6 @@
     },
     "dependencies": {
         "@anfo/validator": "^0.0.1",
-        "@koa/cors": "^5.0.0",
         "@prisma/client": "5.13.0",
         "@types/koa-bodyparser": "^4.3.12",
         "@types/koa-router": "^7.4.8",

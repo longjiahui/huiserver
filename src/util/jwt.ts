@@ -1,6 +1,11 @@
 import { sign as jwtSign, decode as jwtDecode } from 'jsonwebtoken'
+import { env } from '../env'
+import { FatalError } from '../error'
 
-const jwtCookieSecret = process.env.JWT_COOKIE_SECRET
+const jwtCookieSecret = env('JWT_COOKIE_SECRET')
+if (!jwtCookieSecret) {
+    throw new FatalError('no JWT_COOKIE_SECRET specified!')
+}
 
 export const getAuthFunction = (secret: string) => ({
     sign: (

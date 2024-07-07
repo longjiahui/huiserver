@@ -2,19 +2,15 @@ import { type Server as HttpServer, createServer } from 'node:http'
 import Koa, { type DefaultContext, type DefaultState } from 'koa'
 import { Server as IOServer } from 'socket.io'
 import KoaRouter from 'koa-router'
+import type { v } from '../module/http/validatorGuard'
 import type { Logger, Module } from './type'
 import { defaultLogger } from './logger'
 import mods from '../module'
 
-import { initEnv } from '../env'
 import { FatalError } from '../error'
 
-export interface ApplicationGuard {}
-
-// initENV
-initEnv()
-if (!process.env.JWT_COOKIE_SECRET) {
-    throw new FatalError('no JWT_COOKIE_SECRET specified!')
+export interface ApplicationGuard {
+    v: typeof v
 }
 
 export class Application {
