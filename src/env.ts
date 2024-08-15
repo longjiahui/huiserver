@@ -22,6 +22,5 @@ initEnv()
 export function env<K extends keyof typeof process.env>(
     name: K
 ): (typeof process.env)[K] {
-    console.debug(name, process.env[name])
     return process.env[name]
 }
