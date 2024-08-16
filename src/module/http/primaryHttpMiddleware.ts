@@ -26,13 +26,13 @@ export default ((app) => {
             ctx.body = success(ret)
         } catch (err) {
             if (err instanceof AuthError) {
-                log(err.message)
+                debug(err.message)
                 ctx.body = notLoginError(err.message)
             } else if (err instanceof ValidateError) {
-                log(err.message)
+                debug(err.message)
                 ctx.body = validateError(err.message)
             } else if (err instanceof ServiceError) {
-                log(err.message)
+                debug(err.message)
                 ctx.body = serviceFailed(err.message)
             } else {
                 error(err)

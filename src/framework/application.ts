@@ -1,6 +1,6 @@
 import { type Server as HttpServer, createServer } from 'node:http'
 import Koa, { type DefaultContext, type DefaultState } from 'koa'
-import { Server as IOServer } from 'socket.io'
+import { Server as IOServer, Socket } from 'socket.io'
 import KoaRouter from 'koa-router'
 import type { v } from '../module/http/validatorGuard'
 import type { Logger, Module } from './type'
@@ -8,6 +8,12 @@ import { defaultLogger } from './logger'
 import mods from '../module'
 
 import { FatalError } from '../error'
+import { Layer, Middleware } from './layer'
+
+export class IOMiddleware extends Middleware<
+    [IOServer, Socket, ...any[]],
+    any
+> {}
 
 export interface ApplicationGuard {
     v: typeof v
@@ -16,11 +22,14 @@ export interface ApplicationGuard {
 export class Application {
     public httpServer: HttpServer
     public koa: Koa
-    public io: IOServer
     public httpRouter: KoaRouter<DefaultState, DefaultContext>
     public logger: Logger
 
     public guard: ApplicationGuard = {} as any
+
+    // io
+    public ioServer: IOServer
+    public ioMiddlewares: IOMiddleware[] = []
 
     private modAmount = 0
 
@@ -32,17 +41,19 @@ export class Application {
 
     constructor(
         options: {
+            ioMiddlewares?: IOMiddleware[]
             logger?: Logger
         } = {}
     ) {
         this.koa = new Koa()
         this.httpRouter = new KoaRouter<DefaultState, DefaultContext>()
         this.httpServer = createServer(this.koa.callback())
-        this.io = new IOServer(this.httpServer, {
+        this.ioServer = new IOServer(this.httpServer, {
             cors: {
                 origin: '*',
             },
         })
+        this.ioMiddlewares = options.ioMiddlewares ?? []
         this.logger = options.logger ?? defaultLogger
     }
 
@@ -69,5 +80,25 @@ export class Application {
                 r()
             })
         })
+    }
+
+    useIOMiddleware(...m: ConstructorParameters<typeof IOMiddleware>) {
+        this.ioMiddlewares.push(new IOMiddleware(...m))
+    }
+
+    async useIO(
+        eventName: string,
+        handler: (_: IOServer, __: Socket, ...rest: any[]) => any
+    ) {
+        const layer = new Layer<[IOServer, Socket, ...any[]], any>(handler)
+        this.ioMiddlewares.forEach((m) => layer.install(m.handler))
+        this.ioServer.on('connection', (socket) => {
+            socket.on(eventName, (...rest: any[]) =>
+                layer
+                    .go(this.ioServer, socket, ...rest)
+                    .then((d) => rest[rest.length - 1]?.(d))
+            )
+        })
+        this.logger.log(`define io event: ${eventName}`)
     }
 }

@@ -3,7 +3,8 @@ import { Yallist } from 'yallist'
 type ToArray<T> = T extends any[] ? T : [T]
 
 type MiddlewareHandler<A, B> = (
-    next: (...rest: ToArray<A>) => Awaited<B>,
+    next: () => Awaited<B>,
+    // next: (...rest: ToArray<A>) => Awaited<B>,
     ...params: ToArray<A>
 ) => Awaited<B>
 type FinalMiddlewareHandler<A, B> = (...params: ToArray<A>) => Awaited<B>
@@ -58,7 +59,8 @@ export class Layer<P = any, L = any> {
             node?.value == null
                 ? this.finalMiddlewareHandler(...params)
                 : node.value.handler(
-                      (...params: ToArray<P>) => call(node.next, params),
+                      //   (...params: ToArray<P>) => call(node.next, params),
+                      () => call(node.next, params),
                       ...params
                   )
         const middlewares = Yallist.create([...this.middlewares])
