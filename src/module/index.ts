@@ -1,7 +1,8 @@
-import type { Module } from '../framework/type'
-import http from './http'
+import type { Module } from "../framework/type"
+import { createModule } from "../framework/util"
+import http from "./http"
 
-export default ((app) => {
-    // submodule
-    app.use(http)
-}) as Module
+export default createModule((app) => {
+  // submodule
+  app.use(http)
+})
