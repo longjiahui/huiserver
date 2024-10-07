@@ -1,8 +1,7 @@
 import { AuthError, ServiceError, ValidateError } from "../../error"
-import type { Module } from "../../framework/type"
 import { createModule } from "../../framework/util"
 import {
-  defaultError,
+  type Response,
   notLoginError,
   serviceFailed,
   success,
@@ -17,29 +16,36 @@ export default createModule((app) => {
     const log = (...rest: any[]) => app.logger.log(defalutLog, ...rest)
     const debug = (...rest: any[]) => app.logger.debug(defalutLog, ...rest)
     const error = (...rest: any[]) => app.logger.error(defalutLog, ...rest)
+    let finalReturn: Response | undefined = undefined
     try {
       const ret = await next()
       setTimeout(() => {
         // 不阻碍同步流程
         debug((ret != null && ret) || "")
       })
-      ctx.body = success(ret)
+      finalReturn = success(ret)
     } catch (err) {
       if (err instanceof AuthError) {
         debug(err.message)
-        ctx.body = notLoginError(err.message)
+        finalReturn = notLoginError(err.message)
       } else if (err instanceof ValidateError) {
         debug(err.message)
-        ctx.body = validateError(err.message)
+        finalReturn = validateError(err.message)
       } else if (err instanceof ServiceError) {
         debug(err.message)
-        ctx.body = serviceFailed(err.message)
+        finalReturn = serviceFailed(err.message)
       } else {
         error(err)
-        ctx.body = defaultError
       }
     } finally {
-      log(ctx.status)
+      ctx.body = finalReturn
+      const logData = [
+        ctx.status,
+        ...(finalReturn!.code < 0
+          ? [finalReturn!.code, finalReturn!.reason]
+          : []),
+      ]
+      log(...logData)
     }
   })
 })

@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@anfo/validator':
         specifier: ^0.0.1
-        version: 0.0.1
+        version: link:../validator
       '@prisma/client':
         specifier: 5.13.0
         version: 5.13.0(prisma@5.13.0)
@@ -35,6 +35,9 @@ importers:
       koa-bodyparser:
         specifier: ^4.4.1
         version: 4.4.1
+      koa-compose:
+        specifier: ^4.1.0
+        version: 4.1.0
       koa-passport:
         specifier: ^6.0.0
         version: 6.0.0
@@ -78,6 +81,9 @@ importers:
       '@types/koa':
         specifier: ^2.15.0
         version: 2.15.0
+      '@types/koa-compose':
+        specifier: ^3.2.8
+        version: 3.2.8
       '@types/koa-passport':
         specifier: ^6.0.3
         version: 6.0.3
@@ -122,9 +128,6 @@ importers:
         version: 5.4.5
 
 packages:
-
-  '@anfo/validator@0.0.1':
-    resolution: {integrity: sha512-IhCi5M+FptVoAcAJ7rpOLwpw4muMj6XcszHOwZ6CL9BA9nqf3UUe83Lz5qF6HABBLzfsfTE3LDb3GEFerfE3Qw==}
 
   '@prisma/client@5.13.0':
     resolution: {integrity: sha512-uYdfpPncbZ/syJyiYBwGZS8Gt1PTNoErNYMuqHDa2r30rNSFtgTA/LXsSk55R7pdRTMi5pHkeP9B14K6nHmwkg==}
@@ -1133,8 +1136,6 @@ packages:
     engines: {node: '>=10'}
 
 snapshots:
-
-  '@anfo/validator@0.0.1': {}
 
   '@prisma/client@5.13.0(prisma@5.13.0)':
     optionalDependencies:

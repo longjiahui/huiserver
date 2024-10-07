@@ -1,7 +1,7 @@
-import type { Module } from "../../framework/type"
 import primaryHttpMiddleware from "./primaryHttpMiddleware"
 import bodyParser from "koa-bodyparser"
-import validatorGuard from "./validatorGuard"
+import validatorGuard from "./guard/validator"
+import paramGuard from "./guard/param"
 import { createModule } from "../../framework/util"
 
 export default createModule((app) => {
@@ -9,4 +9,5 @@ export default createModule((app) => {
 
   app.use(primaryHttpMiddleware)
   app.use(validatorGuard)
+  app.use(paramGuard)
 })

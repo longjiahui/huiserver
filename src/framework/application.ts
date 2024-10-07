@@ -2,13 +2,14 @@ import { type Server as HttpServer, createServer } from "node:http"
 import Koa, { type DefaultContext, type DefaultState } from "koa"
 import { Server as IOServer, Socket } from "socket.io"
 import KoaRouter from "koa-router"
-import type { v } from "../module/http/validatorGuard"
+import type { v } from "../module/http/guard/validator"
 import type { Logger, Module } from "./type"
 import { defaultLogger } from "./logger"
 import mods from "../module"
 
 import { FatalError } from "../error"
 import { Layer, Middleware } from "./layer"
+import { type numberGuard, type paramGuard } from "../module/http/guard/param"
 
 export class IOMiddleware extends Middleware<
   [IOServer, Socket, ...any[]],
@@ -17,6 +18,8 @@ export class IOMiddleware extends Middleware<
 
 export interface ApplicationGuard {
   v: typeof v
+  param: typeof paramGuard
+  number: typeof numberGuard
 }
 
 export class Application {
@@ -48,6 +51,14 @@ export class Application {
     this.koa = new Koa()
     this.httpRouter = new KoaRouter<DefaultState, DefaultContext>()
     this.httpServer = createServer(this.koa.callback())
+    this.httpServer.on("listening", () => {
+      let address = this.httpServer.address()
+      if (address && typeof address === "object") {
+        address = `http://${address.address}:${address.port}`
+      }
+      this.logger.log(`loaded ${this.modAmount} modules`)
+      this.logger.log(`listened: ${address}`)
+    })
     this.ioServer = new IOServer(this.httpServer, {
       cors: {
         origin: "*",
@@ -66,17 +77,18 @@ export class Application {
     return this
   }
 
-  async start(port?: number) {
+  /**
+   * for test
+   */
+  _routes() {
     this.koa.use(this.httpRouter.routes())
+  }
+
+  async start(port?: number) {
+    this._routes()
 
     return new Promise<void>((r) => {
       this.httpServer.listen({ port }, () => {
-        let address = this.httpServer.address()
-        if (address && typeof address === "object") {
-          address = `http://${address.address}:${address.port}`
-        }
-        this.logger.log(`loaded ${this.modAmount} modules`)
-        this.logger.log(`listened: ${address}`)
         r()
       })
     })

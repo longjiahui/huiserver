@@ -1,3 +1,4 @@
+import compose from "koa-compose"
 import type { ModuleFunction, Module, GuardFunction } from "./type"
 
 export { Layer } from "./layer"
@@ -8,4 +9,8 @@ export function createGuard<Func extends (...rest: any[]) => GuardFunction>(
   func: Func
 ) {
   return func as (...rest: Parameters<Func>) => GuardFunction
+}
+
+export function mergeGuard(...rest: GuardFunction[]) {
+  return compose(rest)
 }
