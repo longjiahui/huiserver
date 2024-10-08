@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@anfo/validator':
-        specifier: ^0.0.1
-        version: link:../validator
+        specifier: ^3.0.0
+        version: 3.0.0
       '@prisma/client':
         specifier: 5.13.0
         version: 5.13.0(prisma@5.13.0)
@@ -128,6 +128,9 @@ importers:
         version: 5.4.5
 
 packages:
+
+  '@anfo/validator@3.0.0':
+    resolution: {integrity: sha512-c55ie68oZxWodP6yc8TFC3wC2MOQRkrAATh8CQSl8Z+xX5czHHdxclrRK0Ju9VViYEIo61Lkw2ZtNv+yJCS/2Q==}
 
   '@prisma/client@5.13.0':
     resolution: {integrity: sha512-uYdfpPncbZ/syJyiYBwGZS8Gt1PTNoErNYMuqHDa2r30rNSFtgTA/LXsSk55R7pdRTMi5pHkeP9B14K6nHmwkg==}
@@ -1136,6 +1139,8 @@ packages:
     engines: {node: '>=10'}
 
 snapshots:
+
+  '@anfo/validator@3.0.0': {}
 
   '@prisma/client@5.13.0(prisma@5.13.0)':
     optionalDependencies:
