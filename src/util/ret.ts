@@ -23,7 +23,7 @@ export function fail(code: number, reason: string) {
 }
 
 export type FailResponse = ReturnType<typeof fail>
-export type SuccessResponse = ReturnType<typeof fail>
+export type SuccessResponse = ReturnType<typeof success>
 export type Response = Partial<FailResponse & SuccessResponse> &
   Pick<FailResponse, "code">
 
