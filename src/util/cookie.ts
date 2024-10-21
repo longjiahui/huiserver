@@ -1,7 +1,7 @@
 import type { Context } from 'koa'
 import { decodeCookie, signCookie } from './jwt'
 
-interface Cookie {
+export interface Cookie {
     token?: string
 }
 

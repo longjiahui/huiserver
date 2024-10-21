@@ -35,7 +35,9 @@ export const v = createGuard(
                 return Object.keys(from).reduce((t, k) => {
                     k = k.endsWith('$') ? k.slice(0, -1) : k
                     t[k as keyof From] =
-                        from[k] && typeof from[k] === 'object'
+                        from[k] &&
+                        typeof from[k] === 'object' &&
+                        !(from[k] instanceof RegExp)
                             ? _pick(d[k], from[k])
                             : d[k]
                     return t
