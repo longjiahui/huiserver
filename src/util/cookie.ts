@@ -24,6 +24,17 @@ export function setCookieByContext<K extends keyof Cookie>(
     value: NonNullable<Cookie[K]>,
     options?: Parameters<Context['cookies']['set']>[2]
 ) {
+    ctx.cookies.set(key, value, {
+        ...options,
+    })
+}
+
+export function setSignedCookieByContext<K extends keyof Cookie>(
+    ctx: Context,
+    key: K,
+    value: NonNullable<Cookie[K]>,
+    options?: Parameters<Context['cookies']['set']>[2]
+) {
     ctx.cookies.set(key, signCookie(value), {
         ...options,
     })
