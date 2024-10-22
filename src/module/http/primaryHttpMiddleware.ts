@@ -46,8 +46,8 @@ export default createModule((app) => {
             ctx.body = finalReturn
             const logData = [
                 ctx.status,
-                ...(finalReturn!.code < 0
-                    ? [finalReturn!.code, finalReturn!.reason]
+                ...(finalReturn?.code! < 0
+                    ? [finalReturn?.code, finalReturn!.reason]
                     : []),
             ]
             log(...logData)
