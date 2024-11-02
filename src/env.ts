@@ -19,8 +19,13 @@ const initEnv = () => {
 }
 
 initEnv()
-export function env<K extends keyof typeof process.env>(
-    name: K
-): (typeof process.env)[K] {
-    return process.env[name]
+
+export interface ServerEnv {
+    NODE_ENV?: 'development' | 'production'
+
+    JWT_COOKIE_SECRET?: string
+}
+type Env = ServerEnv
+export function env<K extends keyof Env>(name: K): Env[K] {
+    return (process.env as ServerEnv)[name]
 }

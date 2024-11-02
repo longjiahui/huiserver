@@ -6,14 +6,4 @@ declare module 'koa' {
     }
 }
 
-declare global {
-    namespace NodeJS {
-        interface ProcessEnv {
-            NODE_ENV?: 'development' | 'production'
-
-            JWT_COOKIE_SECRET?: string
-        }
-    }
-}
-
 export {}
