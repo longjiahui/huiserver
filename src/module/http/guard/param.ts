@@ -26,6 +26,38 @@ export const paramGuard = createGuard(
         }
 )
 
+export const jsonGuard = createGuard(
+    (
+        name: string,
+        options: {
+            type?: ArgType
+            optional?: boolean
+        } = {}
+    ) => {
+        let { type, optional } = options || {}
+        type = type ?? ('body' as ArgType)
+        optional = optional ?? false
+        return (ctx, next) => {
+            return paramGuard(
+                name,
+                (val) => {
+                    try {
+                        if (!optional || val != undefined) {
+                            return JSON.parse(val)
+                        } else {
+                            // 可以为null \ undefined
+                            return val
+                        }
+                    } catch (error) {
+                        throw new ValidateError(`参数[${name}]不是json格式`)
+                    }
+                },
+                type
+            )(ctx, next)
+        }
+    }
+)
+
 export const numberGuard = createGuard(
     (name: string, type: ArgType = 'body') =>
         (ctx, next) => {
@@ -47,4 +79,5 @@ export const numberGuard = createGuard(
 export default createModule((app) => {
     app.guard.param = paramGuard
     app.guard.number = numberGuard
+    app.guard.json = jsonGuard
 })
