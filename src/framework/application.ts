@@ -9,6 +9,7 @@ import mods from '../module'
 import mount from 'koa-mount'
 import serve from 'koa-static'
 import path from 'node:path'
+import cors from '@koa/cors'
 
 import { Layer, Middleware } from './layer'
 import {
@@ -51,6 +52,7 @@ export class Application {
 
     constructor(
         options: {
+            cors?: Parameters<typeof cors>[0]
             staticRoot?: { [url: string]: string }
             ioMiddlewares?: IOMiddleware[]
             logger?: Logger
@@ -79,6 +81,9 @@ export class Application {
                 console.debug(url, path.resolve(p))
                 this.koa.use(mount(url, serve(path.resolve(p))))
             })
+        }
+        if (options.cors) {
+            this.koa.use(cors(options.cors))
         }
     }
 

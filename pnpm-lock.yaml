@@ -11,6 +11,9 @@ importers:
       '@anfo/validator':
         specifier: ^3.0.1
         version: 3.0.1
+      '@koa/cors':
+        specifier: ^5.0.0
+        version: 5.0.0
       '@prisma/client':
         specifier: 5.13.0
         version: 5.13.0(prisma@5.13.0)
@@ -96,6 +99,9 @@ importers:
       '@types/koa-static':
         specifier: ^4.0.4
         version: 4.0.4
+      '@types/koa__cors':
+        specifier: ^5.0.0
+        version: 5.0.0
       '@types/lodash':
         specifier: ^4.17.1
         version: 4.17.1
@@ -137,6 +143,10 @@ packages:
 
   '@anfo/validator@3.0.1':
     resolution: {integrity: sha512-3fIA2CwvwRvAnqR+XCq4zL4CpSL32oEMRb39keP7VQC9hfVk2caPF9q/zlDVttAbIewUYgS5mA4syK08d/Q5Uw==}
+
+  '@koa/cors@5.0.0':
+    resolution: {integrity: sha512-x/iUDjcS90W69PryLDIMgFyV21YLTnG9zOpPXS7Bkt2b8AsY3zZsIpOLBkYr9fBcF3HbkKaER5hOBZLfpLgYNw==}
+    engines: {node: '>= 14.0.0'}
 
   '@prisma/client@5.13.0':
     resolution: {integrity: sha512-uYdfpPncbZ/syJyiYBwGZS8Gt1PTNoErNYMuqHDa2r30rNSFtgTA/LXsSk55R7pdRTMi5pHkeP9B14K6nHmwkg==}
@@ -236,6 +246,9 @@ packages:
 
   '@types/koa@2.15.0':
     resolution: {integrity: sha512-7QFsywoE5URbuVnG3loe03QXuGajrnotr3gQkXcEBShORai23MePfFYdhz90FEtBBpkyIYQbVD+evKtloCgX3g==}
+
+  '@types/koa__cors@5.0.0':
+    resolution: {integrity: sha512-LCk/n25Obq5qlernGOK/2LUwa/2YJb2lxHUkkvYFDOpLXlVI6tKcdfCHRBQnOY4LwH6el5WOLs6PD/a8Uzau6g==}
 
   '@types/lodash@4.17.1':
     resolution: {integrity: sha512-X+2qazGS3jxLAIz5JDXDzglAF3KpijdhFxlf/V1+hEsOUc+HnWi81L/uv/EvGuV90WY+7mPGFCUDGfQC3Gj95Q==}
@@ -1155,6 +1168,10 @@ snapshots:
 
   '@anfo/validator@3.0.1': {}
 
+  '@koa/cors@5.0.0':
+    dependencies:
+      vary: 1.1.2
+
   '@prisma/client@5.13.0(prisma@5.13.0)':
     optionalDependencies:
       prisma: 5.13.0
@@ -1282,6 +1299,10 @@ snapshots:
       '@types/keygrip': 1.0.6
       '@types/koa-compose': 3.2.8
       '@types/node': 20.12.7
+
+  '@types/koa__cors@5.0.0':
+    dependencies:
+      '@types/koa': 2.15.0
 
   '@types/lodash@4.17.1': {}
 
