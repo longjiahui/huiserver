@@ -6,6 +6,9 @@ import type { v } from '../module/http/guard/validator'
 import type { Logger, Module } from './type'
 import { defaultLogger } from './logger'
 import mods from '../module'
+import mount from 'koa-mount'
+import serve from 'koa-static'
+import path from 'node:path'
 
 import { Layer, Middleware } from './layer'
 import {
@@ -48,6 +51,7 @@ export class Application {
 
     constructor(
         options: {
+            staticRoot?: { [url: string]: string }
             ioMiddlewares?: IOMiddleware[]
             logger?: Logger
         } = {}
@@ -70,6 +74,12 @@ export class Application {
         })
         this.ioMiddlewares = options.ioMiddlewares ?? []
         this.logger = options.logger ?? defaultLogger
+        if (Object.keys(options.staticRoot || {}).length) {
+            Object.entries(options.staticRoot!).forEach(([url, p]) => {
+                console.debug(url, path.resolve(p))
+                this.koa.use(mount(url, serve(path.resolve(p))))
+            })
+        }
     }
 
     async use(mod: Module) {

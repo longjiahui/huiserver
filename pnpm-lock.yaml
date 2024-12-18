@@ -38,6 +38,9 @@ importers:
       koa-compose:
         specifier: ^4.1.0
         version: 4.1.0
+      koa-mount:
+        specifier: ^4.0.0
+        version: 4.0.0
       koa-passport:
         specifier: ^6.0.0
         version: 6.0.0
@@ -84,6 +87,9 @@ importers:
       '@types/koa-compose':
         specifier: ^3.2.8
         version: 3.2.8
+      '@types/koa-mount':
+        specifier: ^4.0.5
+        version: 4.0.5
       '@types/koa-passport':
         specifier: ^6.0.3
         version: 6.0.3
@@ -212,6 +218,9 @@ packages:
 
   '@types/koa-compose@3.2.8':
     resolution: {integrity: sha512-4Olc63RY+MKvxMwVknCUDhRQX1pFQoBZ/lXcRLP69PQkEpze/0cr8LNqJQe5NFb/b19DWi2a5bTi2VAlQzhJuA==}
+
+  '@types/koa-mount@4.0.5':
+    resolution: {integrity: sha512-pV1njJ7r94iqAFzT9D5sGSYKUHFGudCLAnmr4WFli7V5tJf5MAgRQK9leTPJ4gjvgr+hnTf86fZsKoFN358c7w==}
 
   '@types/koa-passport@6.0.3':
     resolution: {integrity: sha512-9iV8aiSICfBZpqkkzUshqxN2wTuoj4HGRRH0Idv3lHhXV9rZRCOyDdJSg+vZ6RHSQg0ZeBeAdIL4r/l8bR4SPA==}
@@ -700,6 +709,10 @@ packages:
   koa-convert@2.0.0:
     resolution: {integrity: sha512-asOvN6bFlSnxewce2e/DK3p4tltyfC4VM7ZwuTuepI7dEQVcvpyFuBcEARu1+Hxg8DIwytce2n7jrZtRlPrARA==}
     engines: {node: '>= 10'}
+
+  koa-mount@4.0.0:
+    resolution: {integrity: sha512-rm71jaA/P+6HeCpoRhmCv8KVBIi0tfGuO/dMKicbQnQW/YJntJ6MnnspkodoA4QstMVEZArsCphmd0bJEtoMjQ==}
+    engines: {node: '>= 7.6.0'}
 
   koa-passport@6.0.0:
     resolution: {integrity: sha512-bgcrQN7Ylfgi1PVr5l6hHYkr38RHUzx+ty3m7e/xoTte8MR0zbDt6+pvP3/nuF/yXL6Ba7IzX1rSqmCy6OrrIw==}
@@ -1237,6 +1250,10 @@ snapshots:
     dependencies:
       '@types/koa': 2.15.0
 
+  '@types/koa-mount@4.0.5':
+    dependencies:
+      '@types/koa': 2.15.0
+
   '@types/koa-passport@6.0.3':
     dependencies:
       '@types/koa': 2.15.0
@@ -1732,6 +1749,13 @@ snapshots:
     dependencies:
       co: 4.6.0
       koa-compose: 4.1.0
+
+  koa-mount@4.0.0:
+    dependencies:
+      debug: 4.3.4(supports-color@8.1.1)
+      koa-compose: 4.1.0
+    transitivePeerDependencies:
+      - supports-color
 
   koa-passport@6.0.0:
     dependencies:
