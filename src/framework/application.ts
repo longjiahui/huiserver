@@ -52,6 +52,7 @@ export class Application {
 
     constructor(
         options: {
+            proxy?: boolean,
             cors?: Parameters<typeof cors>[0]
             staticRoot?: { [url: string]: string }
             ioMiddlewares?: IOMiddleware[]
@@ -59,6 +60,9 @@ export class Application {
         } = {}
     ) {
         this.koa = new Koa()
+        if(options.proxy!= null){
+            this.koa.proxy = !!options.proxy
+        }
         this.httpRouter = new KoaRouter<DefaultState, DefaultContext>()
         this.httpServer = createServer(this.koa.callback())
         this.httpServer.on('listening', () => {
