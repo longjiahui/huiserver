@@ -5,6 +5,7 @@ import {
     notLoginError,
     serviceFailed,
     success,
+    unexpectedFailed,
     validateError,
 } from '../../util'
 
@@ -41,6 +42,7 @@ export default createModule((app) => {
                 finalReturn = serviceFailed(err.message)
             } else {
                 error(err)
+                finalReturn = unexpectedFailed('服务器错误，请联系管理员')
             }
         } finally {
             ctx.body = finalReturn
